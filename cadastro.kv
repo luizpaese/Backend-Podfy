@@ -1,0 +1,49 @@
+<MyGrid>:
+    email: email
+    confirm: confirm
+    cpf: CPF
+    senha: Senha
+
+
+    GridLayout:
+        cols: 1
+        pos: 200,100
+        size: 400, 400
+        Label:
+            text: "Logo"
+
+        Label:
+            text: "Inscreva-se Gratuitamente!"
+
+        Label:
+            text: "Email"
+        TextInput:
+            id: email
+            multiline: False
+            required: True
+
+        Label:
+            text: "Confirmação de E-mail"
+        TextInput:
+            id: confirm
+            multiline: False
+
+
+        Label:
+            text: "CPF"
+        TextInput:
+            id: CPF
+            multiline: False
+
+
+        Label:
+            text: "Senha"
+        TextInput:
+            id: Senha
+            multiline: False
+            password: True
+
+
+        Button:
+            text: "Inscreva-se"
+            on_press: root.btn()
