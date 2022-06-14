@@ -1,0 +1,75 @@
+#:import utils kivy.utils
+
+<CustomizeScreen>
+    #Define o background branco!
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#252525')
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        padding: 30
+
+        Image:
+            source: app.user_icon #teria que pegar a imagem do usuário
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: self.texture.width*self.propSize, self.texture.height*self.propSize
+
+        EmptySpace:
+            height: 0
+        
+        Label:
+            text: "Usuário"
+            font_name: app.inter_semibold
+            font_size: 24
+            color: (1,1,1,1)
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 40
+
+        Label:
+            text: "Usuário desde março de 2022"
+            font_name: app.inter_medium
+            font_size: 16
+            color: '#B5B5B5'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+
+        EmptySpace:
+            height: 50
+
+        Label:
+            text: "Sobre"
+            font_name: app.inter_semibold
+            font_size: 24
+            color: '#B5B5B5'
+            size_hint: 1, None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+            halign: 'right' #não consigo mudar o alinhamento do label. (Testar anchorlayout)    https://kivy.org/doc/stable/api-kivy.uix.label.html
+            canvas.before:
+                Color:
+                    rgba: (0,1,0,1)
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+
+        Label:
+            text: "tffhghfghfhfhhfhfghfghfghfhgfgf"
+            font_name: app.inter_semibold
+            font_size: 24
+            color: '#B5B5B5'
+            canvas.before:
+                Color:
+                    rgba: (0,1,0,1)
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
