@@ -1,13 +1,4 @@
-# Importações Kivy
-import os
-from kivy.app import App
-from kivy.config import Config
-# Config.set('graphics', 'resizable', False) #Redimensionamento de janela
-from kivy.lang import Builder
-from kivy.uix.widget import Widget
-from kivy.core.window import Window
-from kivy.uix.button import ButtonBehavior
-from kivy.uix.screenmanager import ScreenManager, Screen
+from Back.Utils import *
 
 GUI = Builder.load_file("Front/Cadastro.kv")
 GUI = Builder.load_file("Front/screen_manager.kv")
@@ -30,18 +21,17 @@ app = Flask(__name__)
 class Podfy(App):
 
     #Importação de recursos
-    podfy_logo_white = os.path.join ('resources', 'podfy-logo-whitebg.jpg')
-    inter_regular = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Regular.ttf')
-    inter_medium = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Medium.ttf')
-    inter_semibold = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-SemiBold.ttf')
-    inter_bold = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Bold.ttf')
+    podfy_logo_white = os.path.join(os.path.dirname('Back'), 'Front', 'resources', 'podfy-logo-whitebg.jpg')
+    inter_regular = os.path.join(os.path.dirname('Back'), 'Front', 'resources', 'fontes', 'Inter', 'static', 'Inter-Regular.ttf')
+    inter_medium = os.path.join(os.path.dirname('Back'), 'Front', 'resources', 'fontes', 'Inter', 'static', 'Inter-Medium.ttf')
+    inter_semibold = os.path.join(os.path.dirname('Back'), 'Front', 'resources', 'fontes', 'Inter', 'static', 'Inter-SemiBold.ttf')
+    inter_bold = os.path.join(os.path.dirname('Back'), 'Front', 'resources','fontes', 'Inter', 'static', 'Inter-Bold.ttf')
 
-    user_icon = os.path.join('resources','img','profile_icon.png')
-    user_icon_hover = os.path.join('resources','img','profile_icon_hover.png')
+    user_icon = os.path.join(os.path.dirname('Back'), 'Front', 'resources', 'img','profile_icon.png')
+    user_icon_hover = os.path.join(os.path.dirname('Back'), 'Front', 'resources','img','profile_icon_hover.png')
 
     def build(self):
         sm = WindowManager()
-        # sm.current = 'login_screen'
         sm.current = 'login_screen' #Tela padrão que o WindowManager vai iniciar
         return sm
 

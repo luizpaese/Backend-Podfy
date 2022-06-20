@@ -1,3 +1,5 @@
+
+
 <Button>
     font_name: app.inter_bold
 
@@ -80,7 +82,12 @@
     email: email
     confirm: confirm
     cpf: CPF
-    senha: Senha
+    senha: senha
+    dia: dia
+    mes: mes
+    ano: ano
+
+
 
     #Define o background branco!
     canvas.before:
@@ -91,6 +98,7 @@
             size:self.size
 
     BoxLayout:
+        source: './resources/'
         orientation: "vertical"
         size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
         color: (0,0,0,1)
@@ -141,7 +149,7 @@
         Label:
             text: "Senha"
         StrokeInputField:
-            id: Senha
+            id: senha
             multiline: False
             password: True
             hint_text: 'Insira a sua senha'
@@ -154,10 +162,13 @@
             spacing: 12
 
             StrokeInputField:
+                id: dia
                 hint_text: 'Dia'
             StrokeInputField:
+                id: mes
                 hint_text: 'Mês'
             StrokeInputField:
+                id: ano
                 hint_text: 'Ano'
 
         EmptySpace:
@@ -204,6 +215,7 @@
             size:self.size
     BoxLayout:
         orientation: "vertical"
+        source:
         size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         padding: 30
