@@ -1,5 +1,69 @@
 #:import utils kivy.utils
 
+
+<ScreenTitle@Label>
+    font_name: app.inter_bold
+    font_size: 24
+    size_hint: 1, None
+    pos_hint: {'center_x': 0.5, 'top': 1}
+    height: 32
+    color: (1,1,1,1)
+    canvas.before:
+        Color:
+            rgba: (0,1,0,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+<TopBar@BoxLayout>
+    orientation: "horizontal"
+    size_hint: 1, None
+    pos_hint: {'center_x:': 0.5}
+    height: 65
+    
+    canvas.before:
+        Color:
+            rgba: (1,0,0,0)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    Image:
+        source: app.home_icon
+        size_hint: None, None
+        height: self.parent.height
+        width: 50
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        # on_press:
+        #     self.parent.source: app.home_icon_hover
+
+    Image:
+        source: app.search_icon
+        size_hint: None, None
+        height: self.parent.height
+        width: 50
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    Image:
+        source: app.bars_icon
+        size_hint: None, None
+        height: self.parent.height
+        width: 50
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    Widget:
+        size_hint: 1, 0.5
+
+    Image:
+        source: app.podfy_mini_logo
+        size_hint: None, None
+        height: self.parent.height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size: self.texture.width, self.texture.height
+    
+
+
 <CustomizeScreen>
     #Define o background branco!
     canvas.before:
@@ -12,8 +76,17 @@
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos_hint: {'center_x': 0.5, 'top': 1}
         padding: 30
+
+        TopBar:
+            #Do something
+
+        ScreenTitle:
+            text: 'Customização'         
+
+        EmptySpace:
+            height: 15
 
         Image:
             source: app.user_icon #teria que pegar a imagem do usuário
@@ -21,9 +94,6 @@
             size_hint: None, None #mantém as proporções
             propSize: 0.75 #Reescala a imagem para 18% do tamanho!
             size: self.texture.width*self.propSize, self.texture.height*self.propSize
-
-        EmptySpace:
-            height: 0
         
         Label:
             text: "Usuário"
@@ -49,27 +119,19 @@
         Label:
             text: "Sobre"
             font_name: app.inter_semibold
-            font_size: 24
+            font_size: 14
             color: '#B5B5B5'
             size_hint: 1, None
-            pos_hint: {'center_x': 0.5}
+            pos_hint: {'center_x': 0.10}
             height: 12
             halign: 'right' #não consigo mudar o alinhamento do label. (Testar anchorlayout)    https://kivy.org/doc/stable/api-kivy.uix.label.html
-            canvas.before:
-                Color:
-                    rgba: (0,1,0,1)
-                Rectangle:
-                    pos:self.pos
-                    size:self.size
 
-        Label:
-            text: "tffhghfghfhfhhfhfghfghfghfhgfgf"
-            font_name: app.inter_semibold
-            font_size: 24
-            color: '#B5B5B5'
-            canvas.before:
-                Color:
-                    rgba: (0,1,0,1)
-                Rectangle:
-                    pos:self.pos
-                    size:self.size
+        EmptySpace:
+            height: 10
+
+        StrokeInputField:
+            text: 'Podpah é um podcast brasileiro apresentado por Igor Cavalari e Thiago Marques. É considerado um dos maiores podcasts do país, com mais de 5 milhões de inscritos no YouTube.'
+            multiline: True
+        
+        Widget:
+            #Ocupa o espaço inferior

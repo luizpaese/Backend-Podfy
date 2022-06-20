@@ -9,6 +9,7 @@ from kivy.core.window import Window
 from kivy.uix.button import ButtonBehavior
 from kivy.uix.screenmanager import ScreenManager, Screen
 
+
 GUI = Builder.load_file("Front/Cadastro.kv")
 GUI = Builder.load_file("Front/screen_manager.kv")
 GUI = Builder.load_file("Front/Customizacao.kv")
@@ -29,20 +30,32 @@ app = Flask(__name__)
 
 class Podfy(App):
 
-    #Importação de recursos
-    podfy_logo_white = os.path.join ('resources', 'podfy-logo-whitebg.jpg')
-    inter_regular = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Regular.ttf')
-    inter_medium = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Medium.ttf')
-    inter_semibold = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-SemiBold.ttf')
-    inter_bold = os.path.join('resources', 'fontes', 'Inter', 'static', 'Inter-Bold.ttf')
+    #Importação de Fontes
+    inter_regular = os.path.join(os.path.dirname('Back'), 'Front','resources', 'fontes', 'Inter', 'static', 'Inter-Regular.ttf')
+    inter_medium = os.path.join(os.path.dirname('Back'), 'Front','resources', 'fontes', 'Inter', 'static', 'Inter-Medium.ttf')
+    inter_semibold = os.path.join(os.path.dirname('Back'), 'Front','resources', 'fontes', 'Inter', 'static', 'Inter-SemiBold.ttf')
+    inter_bold = os.path.join(os.path.dirname('Back'), 'Front','resources', 'fontes', 'Inter', 'static', 'Inter-Bold.ttf')
 
-    user_icon = os.path.join('resources','img','profile_icon.png')
-    user_icon_hover = os.path.join('resources','img','profile_icon_hover.png')
+
+    #Importação de imagens e ícones
+    podfy_logo_white = os.path.join (os.path.dirname('Back'), 'Front','resources', 'podfy-logo-whitebg.jpg')
+    podfy_mini_logo = os.path.join(os.path.dirname('Back'), 'Front','resources','img','bar-podfy-logo.png')
+    
+    user_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon.png')
+    user_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon_hover.png')
+
+    home_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','home.png')
+    home_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','home-1.png')
+
+    bars_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','bars.png')
+    bars_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','bars-1.png')
+
+    search_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','search.png')
+    search_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','search-1.png')
 
     def build(self):
         sm = WindowManager()
-        # sm.current = 'login_screen'
-        sm.current = 'login_screen' #Tela padrão que o WindowManager vai iniciar
+        sm.current = 'customize_screen' #Tela padrão que o WindowManager vai iniciar
         return sm
 
     def users(json_data):
@@ -87,16 +100,13 @@ def cadastro_usuarios():
 
 Window.size = (360, 800)
 
-
 class WindowManager(ScreenManager):
     # Classe Root que vai lidar com transição de Screens
     pass
 
-
 # ADICIONAR RECONHECIMENTO DE LOGIN VÁLIDO COMO FOI FEITO NA CLASSE "RegisterScreen(Screen)"
 class LoginScreen(Screen):
     pass
-
 
 class CustomizeScreen(Screen):
     pass

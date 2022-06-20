@@ -3,7 +3,6 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 import re
 
 
-
 class RegisterScreen(Screen):
     email = ObjectProperty(None)
     confirm = ObjectProperty(None)
