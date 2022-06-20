@@ -1,5 +1,4 @@
-from kivy.properties import ObjectProperty
-from kivy.uix.screenmanager import ScreenManager, Screen
+from Back.Utils import *
 import re
 
 
@@ -8,9 +7,13 @@ class RegisterScreen(Screen):
     confirm = ObjectProperty(None)
     cpf = ObjectProperty(None)
     senha = ObjectProperty(None)
-
+    dia = ObjectProperty(None)
+    mes = ObjectProperty(None)
+    ano = ObjectProperty(None)
     def btn(self):
-        Validar.validar_user(self.email.text, self.email.text, self.confirm.text, self.cpf.text, self.senha.text)
+        if Validar.validar_user(self.email.text, self.confirm.text, self.cpf.text, self.senha.text, self.dia.text, self.mes.text, self.ano.text):
+            user = Validar.validar_user(self.email.text, self.confirm.text, self.cpf.text, self.senha.text)
+            print(user.cpf, user.email, user.senha)
 
 
 
@@ -55,7 +58,11 @@ class Validar:
     # 413.717.708-24
 
     def validar_email(email, confirm):
-        regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+([.]\w{2,3})+$'
+        if not email:
+            print('Por favor informe um email.')
+            return False
+
+        regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+([.][a-z]{2,3})+$'
         if not re.search(regex, email):
             print('Email inválido')
             return False
@@ -66,7 +73,7 @@ class Validar:
         return False
 
     def validar_senha(senha):
-        if len(senha) < 12:
+        if len(senha) < 8:
             print('Informe uma senha de no minimo 12 digitos')
             return False
         elif not re.search('[a-zA-Z]', senha):
@@ -82,7 +89,7 @@ class Validar:
 
         return True
 
-    def validar_user(self, email: str, confirm: str, cpf, senha: str) -> bool or User:
+    def validar_user(email: str, confirm: str, cpf, senha: str, dia: int, mes: int, ano: int) -> bool or User:
 
         if not Validar.validar_email(email, confirm):
             return False
