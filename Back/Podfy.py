@@ -1,25 +1,17 @@
 from Back.Utils import *
 
-
-GUI = Builder.load_file("Front/Cadastro.kv")
-GUI = Builder.load_file("Front/screen_manager.kv")
-GUI = Builder.load_file("Front/Customizacao.kv")
-
-
-
-# importações BD
-from flask import Flask, request as flask_request
-import sqlite3 as sql
-import os
-
-# importações crypt
-import Back.Crypt
-
+Builder.load_file("Front/screen_manager.kv")
+Builder.load_file("Front/Home.kv")
+Builder.load_file("Front/Cadastro.kv")
+Builder.load_file("Front/Pesquisa.kv")
+Builder.load_file("Front/Configuracoes.kv")
+Builder.load_file("Front/Playlists.kv")
+Builder.load_file("Front/Downloads.kv")
 
 app = Flask(__name__)
 
 
-class Podfy(App):
+class Podfy(MDApp):
 
     #Importação de Fontes
     inter_regular = os.path.join(os.path.dirname('Back'), 'Front','resources', 'fontes', 'Inter', 'static', 'Inter-Regular.ttf')
@@ -31,6 +23,8 @@ class Podfy(App):
     #Importação de imagens e ícones
     podfy_logo_white = os.path.join (os.path.dirname('Back'), 'Front','resources', 'podfy-logo-whitebg.jpg')
     podfy_mini_logo = os.path.join(os.path.dirname('Back'), 'Front','resources','img','bar-podfy-logo.png')
+    podfy_mini_logo_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','bar-podfy-logo_hover.png')
+    app_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','icon.png')
     
     user_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon.png')
     user_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon_hover.png')
@@ -44,9 +38,24 @@ class Podfy(App):
     search_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','search.png')
     search_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','search-1.png')
 
+    #Definição de Cores:
+    color_yellow = '#FEC200' #Amarelo padrão Podfy
+    color_gray ='#4F5357' # Cinza padrão Podfy
+    bg_dark_default = '#121212' #Preto padrão para background
+    bg_dark_lighter = '#252525' #Preto levemente mais claro para background
+    
+
     def build(self):
         sm = WindowManager()
-        sm.current = 'customize_screen' #Tela padrão que o WindowManager vai iniciar
+        sm.current = 'login_screen'
+        # sm.current = 'home_screen' 
+
+
+        self.theme_cls.primary_palette = 'Amber'
+        self.theme_cls.primary_hue = '500'
+        self.theme_cls.theme_style = 'Dark'
+        self.title = "Podfy"
+        self.icon = self.app_icon
         return sm
 
     def users(json_data):
@@ -88,16 +97,26 @@ def cadastro_usuarios():
     #    app.run(debug=True, port=80)
 
 
-
-Window.size = (360, 800)
-
 class WindowManager(ScreenManager):
     # Classe Root que vai lidar com transição de Screens
     pass
 
-# ADICIONAR RECONHECIMENTO DE LOGIN VÁLIDO COMO FOI FEITO NA CLASSE "RegisterScreen(Screen)"
-class LoginScreen(Screen):
+class ConfigScreen(Screen):
     pass
 
 class CustomizeScreen(Screen):
     pass
+
+class SearchScreen(Screen):
+    pass
+
+class PlaylistScreen(Screen):
+    pass
+
+class DownloadScreen(Screen):
+    pass
+
+class HomeScreen(Screen):
+    pass
+
+

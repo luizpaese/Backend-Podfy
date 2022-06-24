@@ -1,0 +1,19 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<WindowManager>
+    transition: NoTransition()
+    Outra:
+        name: 'outra_tela'
+
+<Outra>
+    MDFloatLayout:
+
+        MDToolbar:
+            title: "MDDatePicker"
+            pos_hint: {"top": 1}
+            elevation: 10
+
+        MDRaisedButton:
+            text: "Open time picker"
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_release: root.show_date_picker()

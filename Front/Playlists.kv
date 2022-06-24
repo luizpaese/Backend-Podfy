@@ -1,0 +1,26 @@
+
+
+
+########################   Tela de Playlists   ###################################### 
+<PlaylistScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        size: root.width, root.height
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Playlists'
+
+        Widget:
+            #Ocupa o espaço Inferior

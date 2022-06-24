@@ -1,0 +1,27 @@
+
+
+
+########################   HomeScreen   ###################################### 
+<HomeScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Home'
+
+        EmptySpace:
+            height: 40
+
+        Widget:
