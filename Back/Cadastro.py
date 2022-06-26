@@ -1,3 +1,6 @@
+from textwrap import indent
+import requests
+import json
 from Back.Utils import *
 
 class LoginScreen(Screen):
@@ -14,7 +17,11 @@ class RegisterScreen(Screen):
     def btn(self):
         if Validar.validar_user(self.email.text, self.confirm.text, self.cpf.text, self.senha.text, self.dataSelecionada, self.is_checkBox_active):
             user = Validar.validar_user(self.email.text, self.confirm.text, self.cpf.text, self.senha.text, self.dataSelecionada, self.is_checkBox_active)
-            print(user.cpf, user.email, user.senha)
+            
+            data = {"email": user.email, "cpf": user.cpf, "pass": user.senha}
+            json_dump = json.dumps(data)
+            json_data = json.loads(json_dump)
+            x = requests.post('http://localhost/cadastro/usuarios', json=json_data)
 
     def on_save(self, instance, dataValue, date_range):
         self.dataSelecionada = dataValue #Atribui o valor da data para a variável "dataSelecionada"
@@ -155,6 +162,7 @@ class Validar:
         dialog = MDDialog(text = "Cadastro Realizado com Sucesso!")
         dialog.open()
         return user
+
 
     def error_message(error_type: int):
 
