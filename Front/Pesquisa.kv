@@ -1,0 +1,39 @@
+
+
+
+########################   Tela de Pesquisas   ###################################### 
+<SearchScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        size: root.width, root.height
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Buscar Podcasts'
+
+        EmptySpace:
+            height: 20
+
+        MDTextField:
+            font_size: 16
+            font_name: app.inter_semibold          
+            font_name_hint_text: app.inter_semibold 
+            hint_text: "Pesquise por canais ou episódios"
+            mode: "rectangle"
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            width: self.parent.width-60
+
+        Widget:
+            #Ocupa o espaço Inferior

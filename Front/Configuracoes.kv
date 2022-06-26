@@ -1,0 +1,342 @@
+#:import utils kivy.utils
+
+<ButtonImg@ButtonBehavior+HoverBehavior+Image>
+    #Imagem com Hover e ButtonBehavior
+
+#Classe usada para os ícones na navBar
+<BarIcon@ButtonImg>
+    size_hint: None, None
+    height: self.parent.height
+    width: 50
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+<TopBar@BoxLayout>
+    orientation: "horizontal"
+    pos_hint: {'center_x:': 0.5}
+    size_hint: 1, None
+    height: 40
+
+    BarIcon:
+        source: app.home_icon
+        on_release:
+            print('Vai pra home')
+            root.parent.parent.manager.current = 'home_screen'
+        on_enter:
+            self.source = app.home_icon_hover
+        on_leave:
+            self.source = app.home_icon
+    BarIcon:
+        source: app.search_icon
+        on_release:
+            print('Vai pro menu de busca')
+            root.parent.parent.manager.current = 'search_screen'
+        on_enter:
+            self.source = app.search_icon_hover
+        on_leave:
+            self.source = app.search_icon
+    BarIcon:
+        source: app.bars_icon
+        on_release:
+            print('Vai pro menu de configurações')
+            root.parent.parent.manager.current = 'config_screen'
+        on_enter:
+            self.source = app.bars_icon_hover
+        on_leave:
+            self.source = app.bars_icon
+    Widget:
+        size_hint: (1, 0.5)
+    BarIcon:
+        source: app.podfy_mini_logo
+        width: self.texture.width
+        on_enter:
+            self.source = app.podfy_mini_logo_hover
+        on_leave:
+            self.source = app.podfy_mini_logo
+
+<ScreenTitle@Label>
+    font_name: app.inter_bold
+    font_size: 24
+    size_hint: 1, None
+    pos_hint: {'center_x': 0.5, 'top': 1}
+    text_size: self.size
+    valign: 'center'
+    halign: 'left'
+    height: 32
+    color: (1,1,1,1)
+
+
+<GrayButton@HoverBehavior+Button>
+    size_hint: None, None
+    pos_hint: {'left': 1}
+    font_name: app.inter_bold
+    font_size: 16
+    color: (1,1,1,1)
+    background_normal: ''
+    background_color: utils.get_color_from_hex('#1E1E1E')
+    height: 38
+
+<FirstTitleLabel@Label>
+    font_name: app.inter_bold
+    font_size: 16
+    color: (1,1,1,1)
+    text_size: self.size
+    halign: 'left'
+    valign: 'bottom'
+    size_hint: 1, None
+    height: 40
+
+<SecondTitleLabel@Label>
+    font_name: app.inter_semibold
+    font_size: 14
+    color: utils.get_color_from_hex("#B5B5B5")
+    text_size: self.size
+    halign: 'left'
+    valign: 'top'
+    size_hint: 1, None
+    height: 40
+
+<ToCustomize@ButtonBehavior+BoxLayout+HoverBehavior>
+    #ToCustomize já é um BoxLayout!
+    orientation: "horizontal"
+    pos_hint: {'left': 1}
+    size_hint: None, None
+    # size: 300,90 #54+36 = 90
+    size: 300,116 #54+36 = 90
+
+    EmptySpace:
+        width: 12
+    
+    ButtonImg:
+        source: app.user_icon #teria que pegar a imagem do usuário
+        size_hint: None, None
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        propSize: 0.42
+        size: self.texture.width*self.propSize, self.texture.height*self.propSize
+
+        on_release:
+            self.source = app.user_icon
+            root.parent.parent.manager.current = 'customize_screen'
+        on_enter:
+            self.source = app.user_icon_hover
+        on_leave:
+            self.source = app.user_icon
+    
+    EmptySpace:
+        width: 12
+    
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'left': 1}
+        size_hint: None, None
+        size: 190, 90
+
+        Label:
+            text: "Usuário"
+            font_name: app.inter_bold
+            font_size: 20
+            color: (1,1,1,1)
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: None, None
+            size: self.parent.width, 36 #width: 190 // height: 90-54 = 36
+
+        Label:
+            text: "Membro desde\nMarço de 2022"
+            font_name: app.inter_medium
+            font_size: 16
+            color: utils.get_color_from_hex("#B5B5B5")
+            text_size: self.size
+            halign: 'left'
+            valign: 'top'
+            size_hint: None, None
+            size: self.parent.width, 54 #width: 190 // height: 90-36 = 54 
+
+        EmptySpace:
+            height: 10
+
+########################   Tela de Configurações   ###################################### 
+<ConfigScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #NavBar Padrão
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Configurações'
+
+        EmptySpace:
+            height: 10
+
+        ToCustomize:
+            # canvas.before:
+            #     Color:
+            #         rgb: utils.get_color_from_hex('#1E1E1E')
+            #     Rectangle:
+            #         pos:self.pos
+            #         size:self.size
+
+            on_release:
+                print("Vai para a tela de Customização")
+                root.manager.current = 'customize_screen'
+            on_enter:
+                # print("entrou")
+
+            on_leave:
+                # print("Saiu")
+
+        EmptySpace:
+            height: 10
+
+        GrayButton:
+            text: 'Playlists'
+            on_release:
+                self.parent.parent.manager.current = 'playlist_screen'
+        EmptySpace:
+            height: 10
+        GrayButton:
+            text: 'Meus Downloads'
+            width: 170
+            on_release:
+                self.parent.parent.manager.current = 'download_screen'
+
+        EmptySpace:
+            height: 15
+
+        FirstTitleLabel:
+            text:'Plano Premium'
+        SecondTitleLabel:
+            text:'Detalhes do seu plano'
+
+        FirstTitleLabel:
+            text:'Email'
+            height: 20
+        SecondTitleLabel:
+            text:'exemplo123@hotmail.com'
+            height: 16
+
+        EmptySpace:
+            height: 5
+
+        FirstTitleLabel:
+            text:'Bloquear Conteúdo Inapropriado'
+            font_size: 16
+        SecondTitleLabel:
+            text:'Oculte conteúdos impróprios e/ou sem censura'
+
+        EmptySpace:
+            height: 5
+
+        FirstTitleLabel:
+            text:'Downloads apenas em Wifi'
+            font_size: 16
+        SecondTitleLabel:
+            text:'Faça o downloads apenas quando conectado em rede Wifi'
+
+        EmptySpace:
+            height: 5
+
+        FirstTitleLabel:
+            text:'Economia de Dados'
+            font_size: 16
+        SecondTitleLabel:
+            text:'Limitar a qualidade do áudio para reduzir o uso de Dados'
+        EmptySpace:
+            height: 3
+
+        GrayButton:
+            text: 'Painel do Criador'
+            width: 170
+            on_release:
+                self.parent.parent.manager.current = 'creator_screen'
+        Widget:
+            #Ocupa o espaço Inferior
+
+########################   Tela de Customização   ###################################### 
+<CustomizeScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_lighter)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #NavBar Padrão
+        EmptySpace:
+            height: 10 
+
+        ScreenTitle:
+            text: 'Customização'
+
+        EmptySpace:
+            height: 40
+
+        ButtonImg:
+            source: app.user_icon #teria que pegar a imagem do usuário
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: self.texture.width*self.propSize, self.texture.height*self.propSize
+            
+            on_release:
+                print('Muda a foto de perfil')
+                self.source = app.user_icon
+            on_enter:
+                self.source = app.user_icon_hover
+            on_leave:
+                self.source = app.user_icon
+        
+        Label:
+            text: "Usuário"
+            font_name: app.inter_semibold
+            font_size: 24
+            color: (1,1,1,1)
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 40
+
+        Label:
+            text: "Usuário desde março de 2022"
+            font_name: app.inter_medium
+            font_size: 16
+            color: '#B5B5B5'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+
+        EmptySpace:
+            height: 50
+
+        MDTextField:
+            hint_text: 'Sobre'
+            text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            multiline: True
+            font_size: 14
+            font_name: app.inter_medium
+            color_mode: 'custom'
+            mode: 'fill'
+            text_color: (1,1,1,1) #Cor do texto quando em foco
+            line_color_focus: utils.get_color_from_hex(app.color_yellow)
+            radius: [10,10,10,10]
+            text_size: self.size
+            valign: 'center'
+            size_hint: 1, None
+
+        
+        Widget:
+            #Ocupa o espaço inferior
+

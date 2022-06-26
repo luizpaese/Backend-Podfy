@@ -1,0 +1,355 @@
+<Button>
+    font_name: app.inter_bold
+
+<Label> 
+    font_size:14
+    font_name: app.inter_semibold
+    color: '#4F5357' #Define a cor dos textos
+
+<TextInput>
+    background_normal: ''
+    background_color: (0,0,0,0)
+    font_size: 14
+
+#Texto selecionável ("Já tem uma conta?")
+<ClickableLabel@HoverBehavior+ButtonBehavior+Label>
+    font_name: app.inter_regular
+    font_size: 13
+    pos_hint: {'center_x': 0.5}
+    size_hint: None, None
+    size: 250,26
+
+#Espaço entre elementos
+<EmptySpace@Label>
+    space_opacity: 0 
+    pos_hint: {'center_x': 0.5}
+    size_hint: None, None
+    canvas.before:
+        Color:
+            rgba: (0.5,0.5,0.5,self.space_opacity)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+#RoundButton recebe os atributos de Button
+<RoundButton@Button>
+    pos_hint: {'center_x': 0.5}
+    size_hint: 0.8, None #Garante que o botão só vai ser redimensionado horizontalmente
+    height: 50
+    background_color: (0,0,0,0)
+    background_normal: ''
+    color: (1,1,1,1)
+    font_name: app.inter_bold
+    font_size: 21
+    canvas.before:
+        Color:
+            rgba: (254/255, 194/255, 0, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [24,24,24,24]
+
+#Campos de preenchimento de informações
+<StrokeInputField@TextInput>
+    size_hint: 1, None
+    height: 40
+    pos_hint: {'center_x': 0.5}
+    font_name: app.inter_regular
+    padding: [10, (self.height-self.line_height)/2] #Alinha o texto de forma vertical e com um pequeno espaçamento horizontal
+    back_color: (79/255, 83/255, 87/255, 1)
+    color: self.back_color
+    cursor_color: '#FEC200'
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        Line:
+            width: 1.0
+            rounded_rectangle: self.x, self.y, self.width, self.height, 8, 50 #rounded_rectangle: x, y, width, height, corner_radius, resolution
+
+
+<DataPick@ButtonBehavior+Label>
+    
+    pos_hint: {'center_x': 0.5}
+    size_hint: 1, None
+    text_size: self.size #Muda o tamanho da caixa do texto para o tamanho da label (Permitindo mudar o alinhhamento horizontal)
+    halign: 'left'
+    valign: 'center'
+    padding: [10,0]
+    height: 40
+    font_name: app.inter_regular
+    canvas.before:
+        Color:
+            rgba: (79/255, 83/255, 87/255, 1)
+        Line:
+            width: 1.0
+            rounded_rectangle: self.x, self.y, self.width, self.height, 8, 50
+
+<RegisterScreen> 
+    email: email
+    confirm: confirm
+    cpf: CPF
+    senha: senha
+
+
+    #Define o background branco!
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
+        color: (0,0,0,1)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        padding: [30,10,30,40] #Left,top,right,down
+
+        Image:
+            source: app.podfy_logo_white
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.17 #Reescala a imagem para 17% do tamanho!
+            size: self.texture.width*self.propSize, self.texture.height*self.propSize #Pega o tamanho original da imagem e multiplica por um fator de proporção
+
+        Label:
+            text: "Inscreva-se\nGratuitamente!"
+            font_size:32
+            font_name: app.inter_bold
+            color: '#292B2D'
+            halign: 'center' #Alinha o "parágrafo" do texto de forma centralizada
+
+        EmptySpace:
+            height: 24
+
+        Label:
+            text: "E-mail"
+            text_size: self.size
+            halign: 'left'
+
+        EmptySpace:
+            height: 5
+            
+        StrokeInputField:
+            id: email
+            multiline: False
+            required: True
+            focus: True
+            hint_text: 'Insira um e-mail válido'
+
+        Label:
+            text: "Confirmação de E-mail"
+            text_size: self.size
+            halign: 'left'
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            id: confirm
+            multiline: False
+            hint_text: 'Insira novamente o seu e-mail'
+
+        Label:
+            text: "CPF"
+            text_size: self.size
+            halign: 'left'
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            id: CPF
+            multiline: False
+            hint_text: 'Insira o seu CPF'
+
+        Label:
+            text: "Senha"
+            text_size: self.size
+            halign: 'left'
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            id: senha
+            multiline: False
+            password: True
+            hint_text: 'Insira a sua senha'
+
+        # Label:
+        #     text: "Data de Nascimento"
+
+        EmptySpace:
+            height: 20
+
+        DataPick:
+            on_release: root.show_date_picker()
+            text: "Selecione sua data de nascimento"
+
+        EmptySpace:
+            height: 15
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1, None
+            height: 40
+            pos_hint: {'center_x': 0.5}
+
+            MDCheckbox:
+                size_hint: None, None
+                color: '#FEC200'
+                size: 20,20 # Define width e height para 20
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_active: root.is_checkBox_active = True #Define a checkbox como ativa
+
+            EmptySpace:
+                width: 10
+            
+            Label:
+                text: "Concordo com os Termos e Condições do Podfy."
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
+                font_name: app.inter_semibold
+                font_size: 13
+
+        EmptySpace:
+            height: 20
+
+        RoundButton:
+            text: "Inscreva-se"
+            on_press: root.btn()
+            
+        EmptySpace:
+            height: 10
+        
+        ClickableLabel:
+            text: "Já tem uma conta? Faça Login."
+            height: 20
+            on_press: root.manager.current = 'login_screen'
+        Widget:
+            #Ocupa o espaço inferior
+
+            
+#########################################################################################################################
+#########################################################################################################################
+
+<LoginScreen>
+    #Define o background branco!
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+        orientation: "vertical"
+        source:
+        size: root.width, root.height #Define a BoxLayout com o tamanho da tela!
+        # pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [30,10,30,40] #Left,top,right,down
+
+        Image:
+            source: app.podfy_logo_white
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.17 #Reescala a imagem para 18% do tamanho!
+            size: self.texture.width * self.propSize, self.texture.height*self.propSize #Pega o tamanho original da imagem e multiplica por um fator de proporção
+
+        Label:
+            text: "Faça login\nem sua conta!"
+            font_size:32
+            font_name: app.inter_bold
+            color: '#292B2D'
+            size_hint: 1, None
+            pos_hint: {'center_x': 0.5}
+            height: 80
+            text_size: self.size
+            halign: 'center' #Alinha o "parágrafo" do texto de forma centralizada
+            valign: 'bottom'
+        
+        EmptySpace:
+            height: 25
+
+        Label:
+            text: "E-mail"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            id: email
+            multiline: False
+            required: True
+            focus: True
+            hint_text: 'Insira o seu endereço de e-mail'
+            
+        # MDTextField:
+        #     required: True
+        #     font_size: 16
+        #     hint_text: 'Insira um e-mail válido'
+        #     helper_text: 'Esse campo é obrigatório'
+        #     helper_text_mode: 'on_focus'
+        #     font_name_hint_text: app.inter_regular
+        #     font_name_helper_text: app.inter_regular
+        #     line_color_normal: utils.get_color_from_hex(app.color_gray) #Idle: Cinza  
+        #     line_color_focus: utils.get_color_from_hex(app.color_yellow) #Em foco: amarelo
+        #     text_color: utils.get_color_from_hex(app.color_yellow)
+
+        Label:
+            text: "Senha"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 5
+        # MDTextField:
+        #     required: True
+        #     multiline: False
+        #     password: True 
+        #     font_size: 16
+        #     hint_text: 'Insira a sua senha'
+        #     helper_text: 'Esse campo é obrigatório'
+        #     helper_text_mode: 'on_focus'
+        #     font_name_hint_text: app.inter_regular
+        #     font_name_helper_text: app.inter_regular
+        #     line_color_normal: utils.get_color_from_hex(app.color_gray) #Idle: Cinza  
+        #     line_color_focus: utils.get_color_from_hex(app.color_yellow) #Em foco: amarelo
+        #     text_color: utils.get_color_from_hex(app.color_yellow)
+
+        StrokeInputField:
+            id: senha
+            multiline: False
+            password: True
+            hint_text: 'Insira a sua senha'
+
+        EmptySpace:
+            height: 10            
+
+        RoundButton:
+            text: "Login"
+            pos_hint: {'center_x': 0.5}
+            on_release:
+                root.manager.current = 'home_screen'
+
+        EmptySpace:
+            height: 10
+
+        ClickableLabel:
+            text: "Não tem uma conta? Cadastre-se."
+            on_press: root.manager.current = 'register_screen'
+
+        Widget:
+            #Ocupa o espaço inferior

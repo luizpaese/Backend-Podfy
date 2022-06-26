@@ -1,0 +1,26 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
+### ADICIONAR TODAS AS TELAS AQUI
+<WindowManager>
+    transition: NoTransition()
+    LoginScreen:
+        name: 'login_screen'
+    RegisterScreen:
+        name: 'register_screen'
+    CustomizeScreen:
+        name: 'customize_screen'
+    SearchScreen:
+        name: 'search_screen'
+    PlaylistScreen:
+        name: 'playlist_screen'
+    HomeScreen:
+        name: 'home_screen'
+    ConfigScreen:
+        name: 'config_screen'
+    DownloadScreen:
+        name: 'download_screen'
+    CreatorScreen:
+        name: 'creator_screen'
+    
