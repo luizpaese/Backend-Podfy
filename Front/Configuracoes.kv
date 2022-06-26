@@ -251,7 +251,14 @@
             font_size: 16
         SecondTitleLabel:
             text:'Limitar a qualidade do áudio para reduzir o uso de Dados'
+        EmptySpace:
+            height: 3
 
+        GrayButton:
+            text: 'Painel do Criador'
+            width: 170
+            on_release:
+                self.parent.parent.manager.current = 'creator_screen'
         Widget:
             #Ocupa o espaço Inferior
 
