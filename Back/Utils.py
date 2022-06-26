@@ -41,6 +41,9 @@ import Back.Crypt
 # importações Cadastro
 from Back.Cadastro import *
 
+import requests
+import json
+
 
 
 
