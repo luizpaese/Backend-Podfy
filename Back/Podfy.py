@@ -7,8 +7,7 @@ Builder.load_file("Front/Pesquisa.kv")
 Builder.load_file("Front/Configuracoes.kv")
 Builder.load_file("Front/Playlists.kv")
 Builder.load_file("Front/Downloads.kv")
-
-app = Flask(__name__)
+Builder.load_file("Front/Creator.kv")
 
 
 class Podfy(MDApp):
@@ -58,44 +57,6 @@ class Podfy(MDApp):
         self.icon = self.app_icon
         return sm
 
-    def users(json_data):
-        password = Back.Crypt.encrypt(json_data["pass"])
-        passw = password.decode('utf-8')
-        print(passw)
-
-        try:
-            conn = sql.connect('database.db')
-            cur = conn.cursor()
-            cur.execute(f'INSERT INTO users (name, email, CPF, password) VALUES ("{json_data["name"]}", "{json_data["email"]}", "{json_data["cpf"]}", "{password}")')
-            conn.commit()
-
-            return f'Usuário: {json_data["name"]} inserido com o emails: {json_data["email"]}, cpf: {json_data["cpf"]} e senha: password: {password}'
-
-        except Exception as e:
-            return(str(e))
-
-def createdb():
-    if not os.path.exists('database.db'):
-        conn = sql.connect('database.db')
-        conn.execute(
-            'CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, status BOOLEAN, icon TEXT, email TEXT, password BLOB, CPF INTEGER)')
-        conn.commit()
-        conn.close()
-        app.logger.info('Database created')
-        return 'Database created'
-    else:
-        return 'Database already exists'
-
-@app.route('/cadastro/usuarios', methods=['POST'])
-def cadastro_usuarios():
-    json_data = flask_request.get_json()
-    if json_data:
-        return Back.Cadastro.users(json_data)
-
-    #if __name__ == '__main__':
-    #    createdb()
-    #    app.run(debug=True, port=80)
-
 
 class WindowManager(ScreenManager):
     # Classe Root que vai lidar com transição de Screens
@@ -119,4 +80,5 @@ class DownloadScreen(Screen):
 class HomeScreen(Screen):
     pass
 
-
+class CreatorScreen(Screen):
+    pass
