@@ -1,0 +1,57 @@
+<CreatorScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Painel do Criador'
+
+        EmptySpace:
+            height: 40
+
+        Image:
+            source: app.user_icon #teria que pegar a imagem do usuário
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: 100,100
+
+        Label:
+            text: "Seu canal"
+            font_name: app.inter_semibold
+            font_size: 20
+            color: (1,1,1,1)
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 40
+
+        Label:
+            text: "Canal animal"
+            font_name: app.inter_medium
+            font_size: 16
+            color: '#B5B5B5'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+
+        EmptySpace:
+            height: 15
+        
+        RoundButton:
+            text: "Enviar episódio"
+            size: 100,40
+
+        
+
+        Widget:
