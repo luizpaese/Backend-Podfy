@@ -1,0 +1,51 @@
+<ReceitaScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Monetização'
+
+        EmptySpace:
+            height: 15
+
+        Label:
+            text: "Receita Total"
+            font_name: app.inter_semibold
+            font_size: 15
+            color: '#FEC200'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 30
+
+        Label:
+            text: "R$ 2500,00"
+            font_name: app.inter_semibold
+            font_size: 30
+            color: '#FFFFFF'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 80
+
+        EmptySpace:
+            height: 5
+
+        Image:
+            source: app.pod
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: 400, 400
+                
+        Widget:
