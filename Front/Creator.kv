@@ -37,7 +37,7 @@
             height: 40
 
         Label:
-            text: "Canal animal"
+            text: "Nome do canal"
             font_name: app.inter_medium
             font_size: 16
             color: '#B5B5B5'
@@ -52,6 +52,17 @@
             text: "Enviar episódio"
             size: 100,40
 
-        
+        Image:
+            source: app.grafico
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: 400,300
 
+        GrayButton:
+            text: 'Monetização de Perfil >'
+            width: 200
+            on_release:
+                self.parent.parent.manager.current = 'ativar_screen'
+                
         Widget:
