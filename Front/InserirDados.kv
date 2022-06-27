@@ -1,0 +1,142 @@
+<InserirDadosScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Monetização'
+
+        EmptySpace:
+            height: 15
+
+        Label:
+            text: "Banco"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 10
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: 'Ex.: Itaú'
+
+        EmptySpace:
+            height: 30
+
+        Label:
+            text: "Agência"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 10
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: '0000-0'
+
+        EmptySpace:
+            height: 30
+
+        Label:
+            text: "Conta Bancária"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 10
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: '00000-0'
+
+        EmptySpace:
+            height: 30
+
+        Label:
+            text: "Código de Autenticação"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 10
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: '4FG78R'
+
+        EmptySpace:
+            height: 30
+
+        ButtonImg:
+            source: app.frente
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.90 #Reescala a imagem para 18% do tamanho!
+            size: self.texture.width*self.propSize, self.texture.height*self.propSize
+
+        EmptySpace:
+            height: 15
+
+        ButtonImg:
+            source: app.verso
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.90 #Reescala a imagem para 18% do tamanho!
+            size: self.texture.width*self.propSize, self.texture.height*self.propSize
+
+        EmptySpace:
+            height: 40
+
+        RoundButton:
+            text: "Confirmar"
+            size: 100,40
+
+            on_release:
+                self.parent.parent.manager.current = 'receita_screen'
+
+        EmptySpace:
+            height: 30
+
+        Label:
+            text: "Sua solicitação entrará em análise após a\ninserção dos dados. Você será notificado via\n    email e SMS após a confirmação."
+            font_name: app.inter_medium
+            font_size: 10
+            color: '#B5B5B5'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+                
+        Widget:

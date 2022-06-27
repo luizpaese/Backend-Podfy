@@ -8,7 +8,10 @@ Builder.load_file("Front/Configuracoes.kv")
 Builder.load_file("Front/Playlists.kv")
 Builder.load_file("Front/Downloads.kv")
 Builder.load_file("Front/Creator.kv")
-
+Builder.load_file("Front/Monetizar.kv")
+Builder.load_file("Front/Ativar.kv")
+Builder.load_file("Front/InserirDados.kv")
+Builder.load_file("Front/Receita.kv")
 
 class Podfy(MDApp):
 
@@ -27,6 +30,12 @@ class Podfy(MDApp):
     
     user_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon.png')
     user_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','profile_icon_hover.png')
+    grafico = os.path.join(os.path.dirname('Back'), 'Front','resources','img','Grafico.png')
+    estrela = os.path.join(os.path.dirname('Back'), 'Front','resources','img','Estrela.png')
+    cifrao = os.path.join(os.path.dirname('Back'), 'Front','resources','img','cifrao.png')
+    frente = os.path.join(os.path.dirname('Back'), 'Front','resources','img','frente.png')
+    verso = os.path.join(os.path.dirname('Back'), 'Front','resources','img','verso.png')
+    pod = os.path.join(os.path.dirname('Back'), 'Front','resources','img','Poadcasts.png')
 
     home_icon = os.path.join(os.path.dirname('Back'), 'Front','resources','img','home.png')
     home_icon_hover = os.path.join(os.path.dirname('Back'), 'Front','resources','img','home-1.png')
@@ -81,4 +90,16 @@ class HomeScreen(Screen):
     pass
 
 class CreatorScreen(Screen):
+    pass
+
+class MonetizarScreen(Screen):
+    pass
+
+class AtivarScreen(Screen):
+    pass
+
+class InserirDadosScreen(Screen):
+    pass
+
+class ReceitaScreen(Screen):
     pass

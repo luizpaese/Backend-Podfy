@@ -1,0 +1,105 @@
+<MonetizarScreen>
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'top': 1}
+        padding: [15,15,15,15]
+        canvas.before:
+            Color:
+                rgb: utils.get_color_from_hex(app.bg_dark_default)
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        TopBar:
+            #Do something 
+        EmptySpace:
+            height: 10
+
+        ScreenTitle:
+            text: 'Monetização'
+
+        EmptySpace:
+            height: 15
+
+        Image:
+            source: app.estrela
+            pos_hint: {'center_x': 0.5}
+            size_hint: None, None #mantém as proporções
+            propSize: 0.75 #Reescala a imagem para 18% do tamanho!
+            size: 100,100
+
+        EmptySpace:
+            height: 30
+
+        Label:
+            text: "Torne-se um criador e \ncompartilhe conteúdos\ncom toda a comunidade!"
+            font_name: app.inter_semibold
+            font_size: 20
+            color: (1,1,1,1)
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 10
+
+        EmptySpace:
+            height: 70
+
+        Label:
+            text: "Preencha os campos abaixo para\n    criar o seu perfil de criador:"
+            font_name: app.inter_medium
+            font_size: 14
+            color: '#B5B5B5'
+            size_hint: None,None
+            pos_hint: {'center_x': 0.5}
+            height: 12
+
+        EmptySpace:
+            height: 50
+
+        Label:
+            text: "Nome do Canal"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: 'Ex.: Poadcast do Rafinha'
+
+        EmptySpace:
+            height: 15
+
+        Label:
+            text: "Tema"
+            text_size: self.size
+            halign: 'left'
+            valign: 'bottom'
+            size_hint: 1,None
+            height: 25
+
+        EmptySpace:
+            height: 5
+
+        StrokeInputField:
+            multiline: False
+            required: True
+            focus: True
+            hint_text: 'Ex.: Esportes, Músicas, Curiosidades'
+
+        EmptySpace:
+            height: 40
+
+        RoundButton:
+            text: "Comece a criar"
+            size: 100,40
+
+            on_release:
+                self.parent.parent.manager.current = 'creator_screen'
+
+                
+        Widget:
